@@ -4,6 +4,7 @@ import map.WorldMap
 import moving.Vector2d
 import things.WorldElement
 
+
 class MapVisualizer(map: WorldMap) {
   private val EMPTY_CELL = " "
   private val FRAME_FRAGMENT = "-"
@@ -15,11 +16,10 @@ class MapVisualizer(map: WorldMap) {
       if i == upperRight.y + 1 then bd.append(drawHeader(lowerLeft, upperRight))
       bd.append(String.format("%3d: ", i))
       for (j <- lowerLeft.x to upperRight.x + 1) {
-        if (i < lowerLeft.y || i > upperRight.y) {
-          bd.append(drawFrame(j <= upperRight.x))
-        } else {
+        if i < lowerLeft.y || i > upperRight.y then bd.append(drawFrame(j <= upperRight.x))
+        else {
           bd.append(CELL_SEGMENT)
-          if j <= upperRight.x then bd.append(drawObject(new Vector2d(j, i)))
+          if j <= upperRight.x then bd.append(drawObject(Vector2d(j, i)))
         }
       }
     }
@@ -29,8 +29,7 @@ class MapVisualizer(map: WorldMap) {
     if (map.isOccupied(currentPosition)) {
         val worldElement = map.objectAt(currentPosition)
         if worldElement != null then worldElement.toString
-    }
-    EMPTY_CELL
+    } else EMPTY_CELL
   }
 
   private def drawFrame(innerSegment: Boolean) = {
@@ -47,5 +46,4 @@ class MapVisualizer(map: WorldMap) {
     bd.append(System.lineSeparator())
     bd.toString()
   }
-
 }
