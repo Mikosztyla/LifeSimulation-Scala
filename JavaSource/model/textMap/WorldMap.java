@@ -4,7 +4,7 @@ import agh.ics.oop.model.MoveDirection;
 
 /**
  * The interface responsible for interacting with the map of the world.
- * Assumes that Vector2d and MoveDirection classes are defined.
+ * Assumes that moving.Vector2d and MoveDirection classes are defined.
  *
  * @author apohllo, idzik
  */

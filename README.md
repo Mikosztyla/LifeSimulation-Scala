@@ -8,7 +8,7 @@ The intension of the project is to show differences between ***`Java`*** and ***
 This project is an spitting image of the project made in *`Java`* (you can see the project [**here**](https://github.com/Mikosztyla/PO_2023_SRO1640_GOSZTYLA))
 
 The simulation begins on a rectangular map, where Animals and their food (grass `*`) are places.\
-Then, the movement of the Animals is provided. Animal can be moved by 4 arguments:
+Then, the movement of the Animals is provided. things.Animal can be moved by 4 arguments:
 - `f` - forward
 - `b` - backward
 - `r` - right

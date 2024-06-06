@@ -38,7 +38,7 @@ public abstract class AbstractWorldMap{
         }
         else{
             animalMap.put(animal.getPosition(), animal);
-            mapChanged("Animal " + animal.getPosition() + " added to the map");
+            mapChanged("things.Animal " + animal.getPosition() + " added to the map");
             return true;
         }
     }
@@ -57,7 +57,7 @@ public abstract class AbstractWorldMap{
             mapChanged(animal + positionPrev.toString() + " moved to the position " + animal.getPosition().toString());
         }
         if (!directionPrev.equals(animal.getAnimalOrientation())){
-            mapChanged("Animal " + animal.getPosition() + " changed orientation from " + directionPrev + " to " + animal.getAnimalOrientation());
+            mapChanged("things.Animal " + animal.getPosition() + " changed orientation from " + directionPrev + " to " + animal.getAnimalOrientation());
         }
     }
 

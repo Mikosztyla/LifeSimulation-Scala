@@ -1,3 +1,7 @@
+package moving
+
+import moving.Vector2d
+
 enum MapDirection {
   case NORTH, SOUTH, WEST, EAST
 
