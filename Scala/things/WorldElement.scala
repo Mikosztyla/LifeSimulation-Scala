@@ -1,5 +1,9 @@
 package things
 
+import moving.Vector2d
+
 trait WorldElement:
     def isAt(position: Vector2d): Boolean
-    def getPosition(): Vector2d
+
+    override def toString: String 
+    

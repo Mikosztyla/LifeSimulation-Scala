@@ -6,10 +6,10 @@ enum MapDirection {
   case NORTH, SOUTH, WEST, EAST
 
   override def toString: String = this match {
-    case NORTH => "Północ"
-    case SOUTH => "Południe"
-    case EAST  => "Wschód"
-    case WEST  => "Zachód"
+    case NORTH => "N"
+    case SOUTH => "S"
+    case EAST  => "E"
+    case WEST  => "W"
   }
 
   def next: MapDirection = this match {

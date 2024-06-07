@@ -1,7 +1,7 @@
 package map
 
 import things.{Animal, WorldElement}
-import moving.{MoveValidator, Vector2d}
+import moving.{MoveValidator, Vector2d, MoveDirection}
 
 trait WorldMap extends MoveValidator{
   def place(animal: Animal): Boolean

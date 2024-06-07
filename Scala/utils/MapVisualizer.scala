@@ -22,13 +22,15 @@ class MapVisualizer(map: WorldMap) {
           if j <= upperRight.x then bd.append(drawObject(Vector2d(j, i)))
         }
       }
+      bd.append("\n")
     }
+    bd.toString()
   }
 
-  private def drawObject(currentPosition: Vector2d) = {
+  private def drawObject(currentPosition: Vector2d): String = {
     if (map.isOccupied(currentPosition)) {
         val worldElement = map.objectAt(currentPosition)
-        if worldElement != null then worldElement.toString
+        worldElement.toString
     } else EMPTY_CELL
   }
 
