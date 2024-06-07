@@ -28,7 +28,7 @@ class RectangularMap(width: Int, height: Int) extends WorldMap {
   override def isOccupied(position: Vector2d): Boolean = animalMap.contains(position)
 
   override def canMoveTo(position: Vector2d): Boolean = {
-    isOccupied(position) && position.follows(Vector2d(0,0)) && position.precedes(Vector2d(width, height))
+    !isOccupied(position) && position.follows(Vector2d(0,0)) && position.precedes(Vector2d(width, height))
   }
 
   override def toString: String = mapVisualizer.draw(lowerLeft, upperRight)
