@@ -12,8 +12,8 @@ import scala.util.CommandLineParser as CLP
 def main(): Unit = {
   val animals = List(Animal(Vector2d(3, 1)), Animal())
   val animalMoves = OptionParser.convertData(List("f", "f", "r"))
-  val worldMap = GrassField(5)
-  //val worldMap = RectangularMap(5, 5)
+  //val worldMap = GrassField(5)
+  val worldMap = RectangularMap(5, 5)
   for (animal <- animals.iterator) {
     worldMap.place(animal)
   }

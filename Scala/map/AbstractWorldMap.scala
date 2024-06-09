@@ -9,7 +9,7 @@ import scala.collection.mutable
 abstract class AbstractWorldMap {
   protected val animalMap: mutable.Map[Vector2d, Animal] = mutable.HashMap()
   protected var mapBounds: Boundary = _
-  private val mapVisualizer: MapVisualizer = new MapVisualizer(getWorldMap)
+  protected val mapVisualizer: MapVisualizer = new MapVisualizer(getWorldMap)
 
   def place(animal: Animal): Boolean = {
     if (!getWorldMap.canMoveTo(animal.animalPosition)) {

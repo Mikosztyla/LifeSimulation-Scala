@@ -1,13 +1,12 @@
 package map
 import moving.*
 import things.*
-import utils.MapVisualizer
+import utils.*
 
 import scala.collection.mutable
 
-class RectangularMap(width: Int, height: Int) extends WorldMap {
-  private val animalMap: mutable.HashMap[Vector2d, Animal] = mutable.HashMap.empty
-  private val mapVisualizer: MapVisualizer = MapVisualizer(this)
+class RectangularMap(width: Int, height: Int) extends AbstractWorldMap with WorldMap {
+  mapBounds = Boundary(Vector2d(0, 0), Vector2d(width - 1, height - 1))
   private val lowerLeft = Vector2d(0, 0)
   private val upperRight = Vector2d(width, height)
 
@@ -19,24 +18,13 @@ class RectangularMap(width: Int, height: Int) extends WorldMap {
     false
   }
 
-  override def move(animal: Animal, moveDirection: MoveDirection): Unit = {
-    animalMap.remove(animal.animalPosition)
-    animal.move(moveDirection, this)
-    animalMap.put(animal.animalPosition, animal)
-  }
-
-  override def isOccupied(position: Vector2d): Boolean = animalMap.contains(position)
+  override def move(animal: Animal, direction: MoveDirection): Unit = super.move(animal, direction, this)
 
   override def canMoveTo(position: Vector2d): Boolean = {
     !isOccupied(position) && position.follows(Vector2d(0,0)) && position.precedes(Vector2d(width, height))
   }
 
-  override def toString: String = mapVisualizer.draw(lowerLeft, upperRight)
+  override def getCurrentBounds: Boundary = mapBounds
 
-  override def objectAt(position: Vector2d): WorldElement = {
-    if (animalMap.contains(position)) {
-      return animalMap(position)
-    }
-    null
-  }
+  override def getWorldMap: WorldMap = this
 }
