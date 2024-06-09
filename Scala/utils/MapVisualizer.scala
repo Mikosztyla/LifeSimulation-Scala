@@ -12,7 +12,7 @@ class MapVisualizer(map: WorldMap) {
 
   def draw(lowerLeft: Vector2d, upperRight: Vector2d): String = {
     val bd = new StringBuilder()
-    for (i <- upperRight.y + 1 until lowerLeft.y by -1) {
+    for (i <- upperRight.y + 1 until lowerLeft.y - 1 by -1) {
       if i == upperRight.y + 1 then bd.append(drawHeader(lowerLeft, upperRight))
       bd.append(String.format("%3d: ", i))
       for (j <- lowerLeft.x to upperRight.x + 1) {

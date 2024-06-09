@@ -1,4 +1,5 @@
 package things
+
 import moving.*
 
 case class Animal(var animalPosition: Vector2d = Vector2d(2, 2), var animalOrientation: MapDirection = MapDirection.NORTH) extends WorldElement {
