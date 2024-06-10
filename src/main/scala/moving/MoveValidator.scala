@@ -1,5 +1,4 @@
 package moving
 
-trait MoveValidator {
+trait MoveValidator: 
   def canMoveTo(position: Vector2d): Boolean
-}

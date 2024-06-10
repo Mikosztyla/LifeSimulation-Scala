@@ -11,6 +11,6 @@ object OptionParser{
             case "b" => MoveDirection.BACKWARD
             case "l" => MoveDirection.LEFT
             case arg if true => throw new IllegalArgumentException(s"$arg is not a legal move specification")
-        }.toList
+        }
     }
 }

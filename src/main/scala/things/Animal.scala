@@ -18,7 +18,4 @@ case class Animal(var animalPosition: Vector2d = Vector2d(2, 2), var animalOrien
       val newPosition = animalPosition - animalOrientation.toUnitVector
       if (moveValidator.canMoveTo(newPosition)) animalPosition = newPosition
   }
-  
-  
-  
 }

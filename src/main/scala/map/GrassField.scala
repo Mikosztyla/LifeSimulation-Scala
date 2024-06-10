@@ -11,7 +11,7 @@ class GrassField(numberOfGrass: Int) extends AbstractWorldMap with WorldMap {
 
   private val maxWidth = Math.sqrt(10 * numberOfGrass).toInt
   private val maxHeight = Math.sqrt(10 * numberOfGrass).toInt
-  new RandomPositionGenerator(maxWidth, maxHeight, numberOfGrass).foreach { pos => grassMap(pos) = new Grass(pos)}
+  new RandomPositionGenerator(maxWidth, maxHeight, numberOfGrass).foreach { pos => grassMap(pos) = Grass(pos)}
 
   override def canMoveTo(position: Vector2d): Boolean = !(objectAt(position).isInstanceOf[Animal])
 
@@ -35,5 +35,5 @@ class GrassField(numberOfGrass: Int) extends AbstractWorldMap with WorldMap {
   }
 
   override def getElements: Iterable[WorldElement] = super.getElements ++ grassMap.values
-  override def getWorldMap: map.WorldMap = this
+  override def getWorldMap: WorldMap = this
 }

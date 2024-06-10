@@ -1,7 +1,5 @@
 package moving
 
-import moving.Vector2d
-
 enum MapDirection {
   case NORTH, SOUTH, WEST, EAST
 
@@ -27,9 +25,9 @@ enum MapDirection {
   }
 
   def toUnitVector: Vector2d = this match {
-    case NORTH => new Vector2d(0, 1)
-    case EAST  => new Vector2d(1, 0)
-    case SOUTH => new Vector2d(0, -1)
-    case WEST  => new Vector2d(-1, 0)
+    case NORTH => Vector2d(0, 1)
+    case EAST  => Vector2d(1, 0)
+    case SOUTH => Vector2d(0, -1)
+    case WEST  => Vector2d(-1, 0)
   }
 }

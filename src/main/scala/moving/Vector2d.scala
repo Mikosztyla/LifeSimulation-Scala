@@ -3,9 +3,9 @@ package moving
 // case class provides implementation for "equals", "hashCode", and "toString" functions, however
 // we still want to override "toString" function
 case class Vector2d(x: Int, y: Int):
-  def +(other: Vector2d) = Vector2d(x + other.x, y + other.y)
+  def +(other: Vector2d): Vector2d = Vector2d(x + other.x, y + other.y)
 
-  def -(other: Vector2d) = Vector2d(x - other.x, y - other.y)
+  def -(other: Vector2d): Vector2d = Vector2d(x - other.x, y - other.y)
 
   def precedes(other: Vector2d): Boolean = x <= other.x && y <= other.y
 
