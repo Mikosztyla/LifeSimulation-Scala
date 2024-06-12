@@ -4,12 +4,14 @@ import moving.*
 import things.*
 import utils.*
 
+import java.util.UUID
 import scala.collection.mutable
 
-class RectangularMap(width: Int, height: Int) extends AbstractWorldMap with WorldMap {
+class RectangularMap(width: Int, height: Int) extends AbstractWorldMap {
   mapBounds = Boundary(Vector2d(0, 0), Vector2d(width - 1, height - 1))
   private val lowerLeft = Vector2d(0, 0)
   private val upperRight = Vector2d(width, height)
+  private val id = UUID.randomUUID()
 
   override def place(animal: Animal): Boolean = {
     if (!animalMap.contains(animal.animalPosition)) {
@@ -28,4 +30,6 @@ class RectangularMap(width: Int, height: Int) extends AbstractWorldMap with Worl
   override def getCurrentBounds: Boundary = mapBounds
 
   override def getWorldMap: WorldMap = this
+
+  override def getId(): UUID = id
 }

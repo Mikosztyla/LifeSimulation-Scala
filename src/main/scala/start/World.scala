@@ -5,29 +5,26 @@ import map.*
 import utils.*
 import moving.*
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @main
 def main(args: String*): Unit = {
-  val animals = List(Animal(Vector2d(3, 1)), Animal())
+  val numOfMaps = 5
   val animalMoves = OptionParser.convertData(args.toList)
-  val worldMap = GrassField(5)
-//  val worldMap = RectangularMap(5, 5)
-  for (animal <- animals.iterator) {
-    worldMap.place(animal)
-  }
-
 //  for (grass <- new RandomPositionGenerator(5, 5, 5).iterator) {
 //    println(grass)
 //  }
-  println(worldMap)
-  var it = animals.iterator
-  val it2 = animalMoves.iterator
-  for (i <- animalMoves.indices) {
-    if (!it.hasNext) {
-      it = animals.iterator
+  val mapVisualizer = MapVisualizer()
+  for (i <- 0 until numOfMaps) {
+    val worldMap = GrassField(5)
+    //  val worldMap = RectangularMap(5, 5)
+    val animals = List(Animal(Vector2d(3, 1)), Animal())
+    for (animal <- animals.iterator) {
+      worldMap.place(animal)
     }
-    val animal = it.next()
-
-    worldMap.move(animal, it2.next())
-    println(worldMap)
+    worldMap.setMapVisualizer(mapVisualizer)
+    val sim: Simulation = Simulation(animals, animalMoves, worldMap)
+    sim.start()
   }
 }

@@ -2,17 +2,17 @@ package map
 
 import things.*
 import moving.*
-import utils.{Boundary, RandomPositionGenerator}
+import utils.{Boundary, MapVisualizer, RandomPositionGenerator}
 
+import java.util.UUID
 import scala.collection.mutable
 
-class GrassField(numberOfGrass: Int) extends AbstractWorldMap with WorldMap {
+class GrassField(numberOfGrass: Int) extends AbstractWorldMap {
   private val grassMap = new mutable.HashMap[Vector2d, Grass]()
-
   private val maxWidth = Math.sqrt(10 * numberOfGrass).toInt
   private val maxHeight = Math.sqrt(10 * numberOfGrass).toInt
-  new RandomPositionGenerator(maxWidth, maxHeight, numberOfGrass).foreach { pos => grassMap(pos) = Grass(pos)}
-
+  private val id = UUID.randomUUID()
+  RandomPositionGenerator(maxWidth, maxHeight, numberOfGrass).foreach { pos => grassMap(pos) = Grass(pos)}
   override def canMoveTo(position: Vector2d): Boolean = !(objectAt(position).isInstanceOf[Animal])
 
   override def move(animal: Animal, moveDirection: MoveDirection): Unit = super.move(animal, moveDirection, this)
@@ -36,4 +36,5 @@ class GrassField(numberOfGrass: Int) extends AbstractWorldMap with WorldMap {
 
   override def getElements: Iterable[WorldElement] = super.getElements ++ grassMap.values
   override def getWorldMap: WorldMap = this
+  override def getId(): UUID = id
 }

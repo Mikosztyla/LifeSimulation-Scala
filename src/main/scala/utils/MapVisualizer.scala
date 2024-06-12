@@ -5,29 +5,30 @@ import moving.Vector2d
 import things.WorldElement
 
 
-class MapVisualizer(map: WorldMap) {
+class MapVisualizer {
   private val EMPTY_CELL = " "
   private val FRAME_FRAGMENT = "-"
   private val CELL_SEGMENT = "|"
 
-  def draw(lowerLeft: Vector2d, upperRight: Vector2d): String = {
-    val bd = new StringBuilder()
-    for (i <- upperRight.y + 1 until lowerLeft.y - 1 by -1) {
-      if i == upperRight.y + 1 then bd.append(drawHeader(lowerLeft, upperRight))
-      bd.append(String.format("%3d: ", i))
-      for (j <- lowerLeft.x to upperRight.x + 1) {
-        if i < lowerLeft.y || i > upperRight.y then bd.append(drawFrame(j <= upperRight.x))
-        else {
-          bd.append(CELL_SEGMENT)
-          if j <= upperRight.x then bd.append(drawObject(Vector2d(j, i)))
+  def draw(map: WorldMap, lowerLeft: Vector2d, upperRight: Vector2d): String = synchronized {
+      println(map.getId())
+      val bd = new StringBuilder()
+      for (i <- upperRight.y + 1 until lowerLeft.y - 1 by -1) {
+        if i == upperRight.y + 1 then bd.append(drawHeader(lowerLeft, upperRight))
+        bd.append(String.format("%3d: ", i))
+        for (j <- lowerLeft.x to upperRight.x + 1) {
+          if i < lowerLeft.y || i > upperRight.y then bd.append(drawFrame(j <= upperRight.x))
+          else {
+            bd.append(CELL_SEGMENT)
+            if j <= upperRight.x then bd.append(drawObject(map, Vector2d(j, i)))
+          }
         }
+        bd.append("\n")
       }
-      bd.append("\n")
-    }
-    bd.toString()
+      bd.toString()
   }
 
-  private def drawObject(currentPosition: Vector2d): String = {
+  private def drawObject(map: WorldMap, currentPosition: Vector2d): String = {
     if (map.isOccupied(currentPosition)) {
         val worldElement = map.objectAt(currentPosition)
         worldElement.toString

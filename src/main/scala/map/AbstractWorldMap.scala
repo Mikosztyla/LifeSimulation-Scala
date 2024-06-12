@@ -7,10 +7,10 @@ import moving.*
 import scala.collection.mutable
 import scala.compiletime.uninitialized
 
-abstract class AbstractWorldMap {
+abstract class AbstractWorldMap extends WorldMap {
   protected val animalMap: mutable.Map[Vector2d, Animal] = mutable.HashMap()
   protected var mapBounds: Boundary = uninitialized
-  private val mapVisualizer: MapVisualizer = new MapVisualizer(getWorldMap)
+  private var mapVisualizer: MapVisualizer = uninitialized
 
   def place(animal: Animal): Boolean = {
     if (!getWorldMap.canMoveTo(animal.animalPosition)) {
@@ -39,6 +39,10 @@ abstract class AbstractWorldMap {
 
   override def toString: String = {
     mapBounds = getCurrentBounds
-    mapVisualizer.draw(mapBounds.lowerLeft, mapBounds.upperRight)
+    mapVisualizer.draw(this, mapBounds.lowerLeft, mapBounds.upperRight)
   }
+  def setMapVisualizer(mapVis: MapVisualizer): Unit = {
+    mapVisualizer = mapVis
+  }
+
 }
