@@ -6,7 +6,7 @@
 ## Description
 The intension of the project is to show differences between ***`Java`*** and ***`Scala`***.\
 This project is an spitting image of the project made in *`Java`* (you can see the project [**here**](https://github.com/Mikosztyla/LifeSimulation-Scala/tree/main/JavaSource))
-And project made in *`Scala1* [**here**](https://github.com/Mikosztyla/LifeSimulation-Scala/tree/main/src/main/scala)
+And project made in *`Scala`* [**here**](https://github.com/Mikosztyla/LifeSimulation-Scala/tree/main/src/main/scala)
 
 The simulation begins on a rectangular map, where Animals and their food (grass `*`) are places.\
 Then, the movement of the Animals is provided. Animal can be moved by 4 arguments:
